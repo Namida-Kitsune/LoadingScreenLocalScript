@@ -105,6 +105,7 @@ SkipTextButton.TextScaled = true
 SkipTextButton.TextStrokeTransparency = 1
 SkipTextButton.TextTransparency = 0
 
+-- Create ContentProvider and TweenService
 local ContentProvider = game:GetService("ContentProvider")
 local TweenService = game:GetService("TweenService")
 local tweenInfo = TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
@@ -112,6 +113,7 @@ local tweenInfoSound = TweenInfo.new(1)
 local tweenSoundFadeIn = {Volume = 0.5}
 local tweenSoundFadeOut = {Volume = 0}
 
+-- Create Sound
 local selectSoundId = "146730311"
 local SelectSound = Instance.new("Sound", SkipTextButton)
 SelectSound.SoundId = "rbxassetid://" .. selectSoundId
@@ -125,7 +127,11 @@ local LoadingSound = Instance.new("Sound", LoadingScreen)
 LoadingSound.SoundId = "rbxassetid://" .. loadingSoundId
 LoadingSound.Looped = true
 LoadingSound.Volume = 0
+
+-- Play LoadingSound
 LoadingSound:Play()
+
+-- FadeIn Sound
 TweenService:Create(LoadingSound, tweenInfoSound, tweenSoundFadeIn):Play()
 
 -- Move LoadingScreen To PlayerGui
@@ -148,6 +154,7 @@ for index, value in pairs(fakeAsset) do
 	task.wait(0.004)
 end
 
+-- Set Behavior Button Skip
 SkipTextButton.MouseLeave:Connect(function()
 	SkipTextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 end)
@@ -166,6 +173,7 @@ SkipTextButton.MouseButton1Click:Connect(function()
 	StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, true)
 end)
 
+-- Show Button Skip
 SkipTextButton.Visible = true
 
 -- Read Object Loading
@@ -181,6 +189,7 @@ for index, value in pairs(realAsset) do
 	task.wait(0.004)
 end
 
+-- After Loading Success
 if assetIndex == totalAsset then
 	TweenService:Create(LoadingSound, tweenInfoSound, tweenSoundFadeOut):Play()
 	task.wait(1)
